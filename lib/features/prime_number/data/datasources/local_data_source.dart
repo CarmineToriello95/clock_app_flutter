@@ -40,7 +40,7 @@ class LocalDataSourceImpl implements LocalDataSource {
         timestamp.millisecondsSinceEpoch,
       );
     } catch (e) {
-      throw SaveLastPrimeTimestampException(e.toString());
+      throw SavePrimeNumberTimestampException(e.toString());
     }
   }
 }
