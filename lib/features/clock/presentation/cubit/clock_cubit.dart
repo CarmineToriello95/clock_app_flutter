@@ -41,4 +41,10 @@ class ClockCubit extends Cubit<ClockCubitState> {
       ),
     );
   }
+
+  @override
+  Future<void> close() async {
+    _clockTimer.cancel();
+    super.close();
+  }
 }
