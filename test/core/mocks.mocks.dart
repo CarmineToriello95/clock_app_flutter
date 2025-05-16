@@ -8,10 +8,18 @@ import 'dart:convert' as _i6;
 import 'dart:typed_data' as _i8;
 
 import 'package:clock_app/core/errors/failure.dart' as _i11;
+import 'package:clock_app/core/usecases/usecase.dart' as _i14;
+import 'package:clock_app/core/utils/date_time_helper.dart' as _i17;
 import 'package:clock_app/features/prime_number/domain/entities/random_number_entity.dart'
     as _i12;
 import 'package:clock_app/features/prime_number/domain/repositories/prime_number_repository.dart'
     as _i10;
+import 'package:clock_app/features/prime_number/domain/usecases/maybe_fetch_prime_number_usecase.dart'
+    as _i13;
+import 'package:clock_app/features/prime_number/domain/usecases/retrieve_last_prime_number_timestamp_usecase.dart'
+    as _i15;
+import 'package:clock_app/features/prime_number/domain/usecases/save_prime_number_timestamp_usecase.dart'
+    as _i16;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -56,6 +64,16 @@ class _FakeStreamedResponse_1 extends _i1.SmartFake
 
 class _FakeEither_2<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
   _FakeEither_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDateTime_3 extends _i1.SmartFake implements DateTime {
+  _FakeDateTime_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -544,4 +562,121 @@ class MockPrimeNumberRepository extends _i1.Mock
               ),
             )),
           ) as _i5.Future<_i3.Either<_i11.Failure, DateTime?>>);
+}
+
+/// A class which mocks [MaybeFetchPrimeNumberUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMaybeFetchPrimeNumberUsecase extends _i1.Mock
+    implements _i13.MaybeFetchPrimeNumberUsecase {
+  MockMaybeFetchPrimeNumberUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.Either<_i11.Failure, int?>> call(
+          {required _i14.NoParams? params}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#params: params},
+        ),
+        returnValue: _i5.Future<_i3.Either<_i11.Failure, int?>>.value(
+            _FakeEither_2<_i11.Failure, int?>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {#params: params},
+          ),
+        )),
+      ) as _i5.Future<_i3.Either<_i11.Failure, int?>>);
+
+  @override
+  bool isPrime(int? number) => (super.noSuchMethod(
+        Invocation.method(
+          #isPrime,
+          [number],
+        ),
+        returnValue: false,
+      ) as bool);
+}
+
+/// A class which mocks [RetrieveLastPrimeNumberTimestampUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRetrieveLastPrimeNumberTimestampUsecase extends _i1.Mock
+    implements _i15.RetrieveLastPrimeNumberTimestampUsecase {
+  MockRetrieveLastPrimeNumberTimestampUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.Either<_i11.Failure, DateTime?>> call(
+          {required _i14.NoParams? params}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#params: params},
+        ),
+        returnValue: _i5.Future<_i3.Either<_i11.Failure, DateTime?>>.value(
+            _FakeEither_2<_i11.Failure, DateTime?>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {#params: params},
+          ),
+        )),
+      ) as _i5.Future<_i3.Either<_i11.Failure, DateTime?>>);
+}
+
+/// A class which mocks [SavePrimeNumberTimestampUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSavePrimeNumberTimestampUsecase extends _i1.Mock
+    implements _i16.SavePrimeNumberTimestampUsecase {
+  MockSavePrimeNumberTimestampUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.Either<_i11.Failure, bool>> call(
+          {required DateTime? params}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {#params: params},
+        ),
+        returnValue: _i5.Future<_i3.Either<_i11.Failure, bool>>.value(
+            _FakeEither_2<_i11.Failure, bool>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {#params: params},
+          ),
+        )),
+      ) as _i5.Future<_i3.Either<_i11.Failure, bool>>);
+}
+
+/// A class which mocks [DateTimeHelper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDateTimeHelper extends _i1.Mock implements _i17.DateTimeHelper {
+  MockDateTimeHelper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  DateTime get now => (super.noSuchMethod(
+        Invocation.getter(#now),
+        returnValue: _FakeDateTime_3(
+          this,
+          Invocation.getter(#now),
+        ),
+      ) as DateTime);
 }

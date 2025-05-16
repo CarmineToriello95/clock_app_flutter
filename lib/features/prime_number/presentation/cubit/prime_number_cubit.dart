@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:clock_app/core/extensions/date_time_extensions.dart';
 import 'package:clock_app/core/extensions/either_extension.dart';
 import 'package:clock_app/core/usecases/usecase.dart';
+import 'package:clock_app/core/utils/date_time_helper.dart';
 import 'package:clock_app/features/prime_number/domain/usecases/maybe_fetch_prime_number_usecase.dart';
 import 'package:clock_app/features/prime_number/domain/usecases/retrieve_last_prime_number_timestamp_usecase.dart';
 import 'package:clock_app/features/prime_number/domain/usecases/save_prime_number_timestamp_usecase.dart';
@@ -16,17 +17,19 @@ class PrimeNumberCubit extends Cubit<PrimeNumberCubitState> {
   final SavePrimeNumberTimestampUsecase _savePrimeNumberTimestampUsecase;
   final RetrieveLastPrimeNumberTimestampUsecase
   _retrieveLastPrimeNumberTimestampUsecase;
+  final DateTimeHelper _dateTimeHelper;
 
-  late Timer _timer;
+  Timer? _timer;
 
   PrimeNumberCubit(
     this._maybeFetchPrimeNumberUsecase,
     this._savePrimeNumberTimestampUsecase,
     this._retrieveLastPrimeNumberTimestampUsecase,
+    this._dateTimeHelper,
   ) : super(PrimeNumberInitialState());
 
-  void startPeriodicNumberFetching() {
-    _timer = Timer.periodic(Duration(seconds: 5), (_) async {
+  void startPeriodicNumberFetching({required Duration interval}) {
+    _timer ??= Timer.periodic(interval, (_) async {
       // Call the usecase for maybe fetching a prime number.
       final result = await _maybeFetchPrimeNumberUsecase.call(
         params: NoParams(),
@@ -46,7 +49,7 @@ class PrimeNumberCubit extends Cubit<PrimeNumberCubitState> {
                 ? retrieveLastPrimeTimestampResult.asRight()
                 : null;
 
-        final now = DateTime.now();
+        final now = _dateTimeHelper.now;
 
         emit(
           PrimeNumberPopulatedState(
@@ -66,7 +69,7 @@ class PrimeNumberCubit extends Cubit<PrimeNumberCubitState> {
 
   @override
   Future<void> close() async {
-    _timer.cancel();
+    _timer?.cancel();
     super.close();
   }
 }

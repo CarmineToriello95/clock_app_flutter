@@ -7,7 +7,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   // Start the periodic number fetching as soon as the app starts.
-  getIt.get<PrimeNumberCubit>().startPeriodicNumberFetching();
+  getIt.get<PrimeNumberCubit>().startPeriodicNumberFetching(
+    interval: Duration(seconds: 10),
+  );
   runApp(const MyApp());
 }
 
