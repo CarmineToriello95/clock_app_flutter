@@ -14,14 +14,14 @@ import 'package:injectable/injectable.dart';
 /// If an error occurred while fetching the random number, return a Failure object.
 @injectable
 class MaybeFetchPrimeNumberUsecase implements UseCase<int?, NoParams> {
-  final PrimeNumberRepository repository;
+  final PrimeNumberRepository _repository;
 
-  MaybeFetchPrimeNumberUsecase({required this.repository});
+  MaybeFetchPrimeNumberUsecase(this._repository);
 
   @override
   Future<Either<Failure, int?>> call({required NoParams params}) async {
     final Either<Failure, RandomNumberEntity> result =
-        await repository.fetchRandomNumber();
+        await _repository.fetchRandomNumber();
 
     /// If something went wrong while fetching the random number, return a failure object.
     if (result.isLeft()) {

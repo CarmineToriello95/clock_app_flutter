@@ -62,8 +62,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i11.SavePrimeNumberTimestampUsecase>(() =>
         _i11.SavePrimeNumberTimestampUsecase(gh<_i8.PrimeNumberRepository>()));
     gh.factory<_i12.MaybeFetchPrimeNumberUsecase>(() =>
-        _i12.MaybeFetchPrimeNumberUsecase(
-            repository: gh<_i8.PrimeNumberRepository>()));
+        _i12.MaybeFetchPrimeNumberUsecase(gh<_i8.PrimeNumberRepository>()));
     gh.singleton<_i13.PrimeNumberCubit>(() => _i13.PrimeNumberCubit(
           gh<_i12.MaybeFetchPrimeNumberUsecase>(),
           gh<_i11.SavePrimeNumberTimestampUsecase>(),

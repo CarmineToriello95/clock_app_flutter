@@ -2,7 +2,7 @@ import 'package:clock_app/features/prime_number/data/datasources/local_data_sour
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../core/mocks.mocks.dart';
+import '../../../../core/mocks.mocks.dart';
 
 void main() {
   late LocalDataSource dataSource;
