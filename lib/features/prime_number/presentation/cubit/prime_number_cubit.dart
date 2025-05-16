@@ -25,8 +25,8 @@ class PrimeNumberCubit extends Cubit<PrimeNumberCubitState> {
     this._retrieveLastPrimeNumberTimestampUsecase,
   ) : super(PrimeNumberInitialState());
 
-  void startApiRequests() {
-    _timer = Timer.periodic(Duration(seconds: 10), (_) async {
+  void startPeriodicNumberFetching() {
+    _timer = Timer.periodic(Duration(seconds: 5), (_) async {
       // Call the usecase for maybe fetching a prime number.
       final result = await _maybeFetchPrimeNumberUsecase.call(
         params: NoParams(),

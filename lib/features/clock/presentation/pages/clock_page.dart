@@ -1,6 +1,9 @@
 import 'package:clock_app/di_config.dart';
 import 'package:clock_app/features/clock/presentation/cubit/clock_cubit.dart';
 import 'package:clock_app/features/clock/presentation/cubit/clock_cubit_state.dart';
+import 'package:clock_app/features/prime_number/presentation/cubit/prime_number_cubit.dart';
+import 'package:clock_app/features/prime_number/presentation/cubit/prime_number_cubit_state.dart';
+import 'package:clock_app/features/prime_number/presentation/pages/prime_number_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,39 +27,59 @@ class _ClockPageState extends State<ClockPage> {
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: Colors.black,
     body: SafeArea(
-      child: BlocBuilder<ClockCubit, ClockCubitState>(
-        bloc: _clockCubit,
-        builder: (_, state) {
-          if (state is ClockPopulatedState) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    state.time,
-                    style: TextStyle(color: Colors.white, fontSize: 96),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        state.day,
-                        style: TextStyle(color: Colors.white, fontSize: 48),
-                      ),
-                      Text(
-                        'CW ${state.calendarWeek}',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
+      child: BlocListener<PrimeNumberCubit, PrimeNumberCubitState>(
+        bloc: getIt.get<PrimeNumberCubit>(),
+        listener: (ctx, state) {
+          if (state is PrimeNumberPopulatedState) {
+            // If this page is the visible page then show the prime number page.
+            if (ModalRoute.of(context)?.isCurrent == true) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => PrimeNumberPage()),
+              );
+            }
           }
-          return Center(child: CircularProgressIndicator());
         },
+        child: BlocBuilder<ClockCubit, ClockCubitState>(
+          bloc: _clockCubit,
+          builder: (_, state) {
+            if (state is ClockPopulatedState) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      state.time,
+                      style: TextStyle(color: Colors.white, fontSize: 96),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          state.day,
+                          style: TextStyle(color: Colors.white, fontSize: 48),
+                        ),
+                        Text(
+                          'CW ${state.calendarWeek}',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     ),
   );
+
+  @override
+  void dispose() {
+    _clockCubit.close();
+    super.dispose();
+  }
 }

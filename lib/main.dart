@@ -1,9 +1,13 @@
 import 'package:clock_app/di_config.dart';
 import 'package:clock_app/features/clock/presentation/pages/clock_page.dart';
+import 'package:clock_app/features/prime_number/presentation/cubit/prime_number_cubit.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  configureDependencies();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  // Start the periodic number fetching as soon as the app starts.
+  getIt.get<PrimeNumberCubit>().startPeriodicNumberFetching();
   runApp(const MyApp());
 }
 
@@ -12,6 +16,9 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) =>
-      MaterialApp(title: 'Flutter Demo', home: ClockPage());
+  Widget build(BuildContext context) => MaterialApp(
+    title: 'Clock App',
+    home: ClockPage(),
+    debugShowCheckedModeBanner: false,
+  );
 }
