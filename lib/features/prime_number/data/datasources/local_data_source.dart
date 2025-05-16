@@ -14,6 +14,7 @@ class LocalDataSourceImpl implements LocalDataSource {
   final SharedPreferences _sharedPreferences;
 
   LocalDataSourceImpl(this._sharedPreferences);
+
   @override
   Future<DateTime?> retrieveLastPrimeTimestamp() {
     try {

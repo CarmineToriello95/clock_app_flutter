@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:clock_app/core/errors/prime_number/prime_number_exceptions.dart';
+import 'package:clock_app/core/utils/api_utils.dart';
 import 'package:clock_app/features/prime_number/data/models/random_number_model.dart';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
@@ -18,7 +19,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<RandomNumberModel> fetchRandomNumber() async {
     try {
-      final uri = Uri.https('www.randomnumberapi.com', '/api/v1.0/random');
+      final uri = Uri.https(ApiUtils.authority, ApiUtils.randomNumberPath);
 
       final Response response = await _client.get(uri);
 
