@@ -1,6 +1,4 @@
-# clock_app
-
-A clock app made with Flutter.
+# PrimeClock App
 
 The main screen shows a clock. 
 Meanwhile, the app fetches a random number from an api every 10 seconds. 
