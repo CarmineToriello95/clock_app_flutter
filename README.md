@@ -38,6 +38,24 @@ Additionally, there is a `core/` folder used for:
 - Shared logic and utilities
 - Common base classes, interfaces, and helper functions used across features
 
+Therefore, the lib folder is organized as follows:
+
+- `lib/`
+  - `core/`
+  - `features/` - Clock and Prime Number features are here
+  - `main.dart` — Application entry point
+  - `di_config.dart` — Dependency injection setup
+ 
+### Unit and Widget Tests
+
+The tests folder mirrors the structure of the lib folder:
+
+- `test/`
+  - `core/` — Contains mocked object used in the tests
+  - `features/` — Tests corresponding to `lib/feature`. Here you can find unit and widget tests.
+ 
+Although full test coverage is not yet implemented, you will find both unit tests and widget tests included, demonstrating my ability to write and structure effective tests.
+
 ### Packages
 
 - **`dartz`** – Functional programming tools for Dart, including `Either`.
