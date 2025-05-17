@@ -17,8 +17,9 @@ If the app is closed and then reopened, it should still calculate the correct ti
 
 https://github.com/user-attachments/assets/7d747715-d892-431a-b7d5-d9153d5b7995
 
-
+<br>
 when the very first prime number is shown, a message indicates that this is the first prime number because there is no previous one to compare with. This is one of my assumptions, please read more in the [Assumptions Made](#assumptions-made) section.
+<br>
 
 ![Simulator Screenshot - iPhone 15 - 2025-05-17 at 10 50 09](https://github.com/user-attachments/assets/df6f7c89-90ef-41ff-b21b-c9e9acc392c9)
 
@@ -41,10 +42,10 @@ Additionally, there is a `core/` folder used for:
 
 ### Packages
 
-- **`dartz`** – Functional programming tools for Dart, `Either`.
+- **`dartz`** – Functional programming tools for Dart, including `Either`.
 - **`equatable`** – Simplifies value comparisons by overriding equality and hashCode automatically.
-- **`flutter_bloc`** – State management library that integrates the BLoC pattern into Flutter apps.
-- **`flutter_test`** – Provides testing utilities for Flutter widgets and integration with the Flutter testing framework
+- **`flutter_bloc`** – State management library that integrates the BLoC/Cubit pattern into Flutter apps.
+- **`flutter_test`** – Provides testing utilities for Flutter widgets and integration with the Flutter testing framework.
 - **`bloc_test`** – Utilities for testing BLoC and Cubit logic in Flutter.
 - **`get_it`** – A simple service locator for dependency injection in Dart and Flutter.
 - **`http`** – Lightweight HTTP client for making network requests in Dart.
