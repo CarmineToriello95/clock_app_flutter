@@ -10,6 +10,10 @@ import 'dart:typed_data' as _i8;
 import 'package:clock_app/core/errors/failure.dart' as _i11;
 import 'package:clock_app/core/usecases/usecase.dart' as _i14;
 import 'package:clock_app/core/utils/date_time_helper.dart' as _i17;
+import 'package:clock_app/features/clock/presentation/cubit/clock_cubit.dart'
+    as _i18;
+import 'package:clock_app/features/clock/presentation/cubit/clock_cubit_state.dart'
+    as _i19;
 import 'package:clock_app/features/prime_number/domain/entities/random_number_entity.dart'
     as _i12;
 import 'package:clock_app/features/prime_number/domain/repositories/prime_number_repository.dart'
@@ -20,7 +24,12 @@ import 'package:clock_app/features/prime_number/domain/usecases/retrieve_last_pr
     as _i15;
 import 'package:clock_app/features/prime_number/domain/usecases/save_prime_number_timestamp_usecase.dart'
     as _i16;
+import 'package:clock_app/features/prime_number/presentation/cubit/prime_number_cubit.dart'
+    as _i21;
+import 'package:clock_app/features/prime_number/presentation/cubit/prime_number_cubit_state.dart'
+    as _i22;
 import 'package:dartz/dartz.dart' as _i3;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i20;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
@@ -679,4 +688,206 @@ class MockDateTimeHelper extends _i1.Mock implements _i17.DateTimeHelper {
           Invocation.getter(#now),
         ),
       ) as DateTime);
+}
+
+/// A class which mocks [ClockCubit].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClockCubit extends _i1.Mock implements _i18.ClockCubit {
+  MockClockCubit() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i19.ClockCubitState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _i7.dummyValue<_i19.ClockCubitState>(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i19.ClockCubitState);
+
+  @override
+  _i5.Stream<_i19.ClockCubitState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i5.Stream<_i19.ClockCubitState>.empty(),
+      ) as _i5.Stream<_i19.ClockCubitState>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void startClock() => super.noSuchMethod(
+        Invocation.method(
+          #startClock,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void emit(_i19.ClockCubitState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i20.Change<_i19.ClockCubitState>? change) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [PrimeNumberCubit].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPrimeNumberCubit extends _i1.Mock implements _i21.PrimeNumberCubit {
+  MockPrimeNumberCubit() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i22.PrimeNumberCubitState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _i7.dummyValue<_i22.PrimeNumberCubitState>(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i22.PrimeNumberCubitState);
+
+  @override
+  _i5.Stream<_i22.PrimeNumberCubitState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i5.Stream<_i22.PrimeNumberCubitState>.empty(),
+      ) as _i5.Stream<_i22.PrimeNumberCubitState>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void startPeriodicNumberFetching({required Duration? interval}) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #startPeriodicNumberFetching,
+          [],
+          {#interval: interval},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void emit(_i22.PrimeNumberCubitState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i20.Change<_i22.PrimeNumberCubitState>? change) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

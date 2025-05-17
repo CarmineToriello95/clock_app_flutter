@@ -5,6 +5,8 @@ sealed class PrimeNumberCubitState extends Equatable {
 }
 
 class PrimeNumberInitialState extends PrimeNumberCubitState {
+  const PrimeNumberInitialState();
+
   @override
   List<Object?> get props => [];
 }
