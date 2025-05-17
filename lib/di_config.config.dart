@@ -11,13 +11,13 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:http/http.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i7;
+import 'package:shared_preferences/shared_preferences.dart' as _i6;
 
-import 'core/utils/date_time_helper.dart' as _i5;
+import 'core/utils/date_time_helper.dart' as _i4;
 import 'di_config.dart' as _i15;
-import 'features/clock/presentation/cubit/clock_cubit.dart' as _i4;
+import 'features/clock/presentation/cubit/clock_cubit.dart' as _i7;
 import 'features/prime_number/data/datasources/local_data_source.dart' as _i8;
-import 'features/prime_number/data/datasources/remote_data_source.dart' as _i6;
+import 'features/prime_number/data/datasources/remote_data_source.dart' as _i5;
 import 'features/prime_number/data/repositories/prime_number_repository_impl.dart'
     as _i10;
 import 'features/prime_number/domain/repositories/prime_number_repository.dart'
@@ -44,18 +44,19 @@ extension GetItInjectableX on _i1.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.factory<_i3.Client>(() => registerModule.client);
-    gh.factory<_i4.ClockCubit>(() => _i4.ClockCubit());
-    gh.factory<_i5.DateTimeHelper>(() => _i5.DateTimeHelper());
-    gh.factory<_i6.RemoteDataSource>(
-        () => _i6.RemoteDataSourceImpl(gh<_i3.Client>()));
-    await gh.factoryAsync<_i7.SharedPreferences>(
+    gh.factory<_i4.DateTimeHelper>(() => _i4.DateTimeHelper());
+    gh.factory<_i5.RemoteDataSource>(
+        () => _i5.RemoteDataSourceImpl(gh<_i3.Client>()));
+    await gh.factoryAsync<_i6.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.lazySingleton<_i7.ClockCubit>(
+        () => _i7.ClockCubit(gh<_i4.DateTimeHelper>()));
     gh.factory<_i8.LocalDataSource>(
-        () => _i8.LocalDataSourceImpl(gh<_i7.SharedPreferences>()));
+        () => _i8.LocalDataSourceImpl(gh<_i6.SharedPreferences>()));
     gh.factory<_i9.PrimeNumberRepository>(() => _i10.PrimeNumberRepositoryImpl(
-          gh<_i6.RemoteDataSource>(),
+          gh<_i5.RemoteDataSource>(),
           gh<_i8.LocalDataSource>(),
         ));
     gh.factory<_i11.RetrieveLastPrimeNumberTimestampUsecase>(() =>
@@ -69,7 +70,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i13.MaybeFetchPrimeNumberUsecase>(),
           gh<_i12.SavePrimeNumberTimestampUsecase>(),
           gh<_i11.RetrieveLastPrimeNumberTimestampUsecase>(),
-          gh<_i5.DateTimeHelper>(),
+          gh<_i4.DateTimeHelper>(),
         ));
     return this;
   }
