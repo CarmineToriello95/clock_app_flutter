@@ -9,7 +9,6 @@ import 'package:clock_app/features/prime_number/presentation/pages/prime_number_
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/mocks.mocks.dart';
 
@@ -21,10 +20,7 @@ void main() {
     mockClockCubit = MockClockCubit();
     mockPrimeNumberCubit = MockPrimeNumberCubit();
 
-    getIt.registerSingletonAsync<SharedPreferences>(
-      () async => SharedPreferences.getInstance(),
-    );
-    getIt.registerSingleton<ClockCubit>(mockClockCubit);
+    getIt.registerFactory<ClockCubit>(() => mockClockCubit);
     getIt.registerSingleton<PrimeNumberCubit>(mockPrimeNumberCubit);
 
     provideDummy<ClockCubitState>(const ClockInitialState());
